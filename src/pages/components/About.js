@@ -34,7 +34,7 @@ const About = () => {
 
         <div className="relative w-full bg-white bg-opacity-10 backdrop-blur-lg rounded-lg">
           <img
-            src="project1.png"
+            src="project7.png"
             className="rounded-lg md:max-w-[500px]"
             alt="project 1"
           />
@@ -96,7 +96,7 @@ const About = () => {
         <div className="relative w-full bg-white bg-opacity-10 backdrop-blur-lg rounded-lg">
           <img
           style={{border: ''}}
-            src="project5.png"
+            src="project6.png"
             className="rounded-lg md:max-w-[500px]"
             alt="project 3"
           />
@@ -106,7 +106,7 @@ const About = () => {
       <div className="p-6">
         <h2 className="text-gray-200 text-3xl font-bold mb-4">Fullstack Experience</h2>
         <p className="text-gray-300 mb-4">
-            Slikked in developing end-to-end solutions using FullStack technologis.
+            Skilled in developing end-to-end solutions using FullStack technologis.
         </p>
         <div className="md:flex flex-wrap gap-4 text-4xl justify-center hidden">
           <DiHtml5 className="text-orange-600" />

@@ -97,9 +97,11 @@
 
 // export default SignUp;
 
-import React from "react";
+import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import { useRouter } from "next/router";
+
+import { FaEye, FaEyeSlash } from "react-icons/fa";
 
 const Login = () => {
   const {
@@ -108,20 +110,30 @@ const Login = () => {
     formState: { errors },
   } = useForm();
   const router = useRouter();
+  const [loading, setLoading] = useState(false);
+  const [showPassword, setShowPassword] = useState(false);
+
+  const togglePasswordVisibility = () => {
+    setShowPassword(!showPassword);
+  };
 
   const onSubmit = async (data) => {
+    setLoading(true);
     try {
       // Send login request to the backend
-      const response = await fetch("https://youtube-portfolio-backend.vercel.app/login", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          identifier: data.identifier, // Email or phone
-          password: data.password,
-        }),
-      });
+      const response = await fetch(
+        "https://youtube-portfolio-backend.vercel.app/login",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            identifier: data.identifier, // Email or phone
+            password: data.password,
+          }),
+        }
+      );
 
       const result = await response.json();
 
@@ -129,13 +141,15 @@ const Login = () => {
         // Store user data in local storage (excluding sensitive info like password)
         localStorage.setItem("user", JSON.stringify(result));
         alert("Login successful!");
-
+        setLoading(false);
         // Reload the page
         router.reload();
       } else {
+        setLoading(false);
         alert(result.message || "Login failed. Please try again.");
       }
     } catch (error) {
+      setLoading(false);
       console.error("Error during login:", error);
       alert("An error occurred. Please try again.");
     }
@@ -177,11 +191,20 @@ const Login = () => {
             <label className="block text-white text-sm font-bold mb-2">
               Password
             </label>
-            <input
-              type="password"
-              {...register("password", { required: "Password is required" })}
-              className="shadow appearance-none border border-gray-700 rounded w-full py-2 px-3 bg-gray-700 text-gray-300 leading-tight focus:outline-none focus:shadow-outline focus:ring-2 focus:ring-blue-500"
-            />
+            <div className="relative">
+              <input
+                type={showPassword ? "text" : "password"}
+                {...register("password", { required: "Password is required" })}
+                className="shadow appearance-none border border-gray-700 rounded w-full py-2 px-3 bg-gray-700 text-gray-300 leading-tight focus:outline-none focus:shadow-outline focus:ring-2 focus:ring-blue-500"
+              />
+              <button
+                type="button"
+                onClick={togglePasswordVisibility}
+                className="absolute right-2 top-2 text-gray-400 mt-1 hover:text-gray-200"
+              >
+                {showPassword ? <FaEyeSlash /> : <FaEye />}
+              </button>
+            </div>
             {errors.password && (
               <p className="text-red-500 text-xs mt-1">
                 {errors.password.message}
@@ -194,7 +217,7 @@ const Login = () => {
               type="submit"
               className="bg-blue-600 w-full hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline transition duration-150"
             >
-              Login
+              {loading ? "....." : "Login"}
             </button>
           </div>
         </form>

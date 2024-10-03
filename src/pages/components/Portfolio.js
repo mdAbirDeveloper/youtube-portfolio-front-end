@@ -4,19 +4,59 @@ import { AiFillGithub } from "react-icons/ai";
 
 const Portfolio = () => {
   const [currentProject, setCurrentProject] = useState(0);
-  const [projects, setProjects] = useState([]);
+  // const [projects, setProjects] = useState([]);
 
-  useEffect(() => {
-    fetch("https://youtube-portfolio-backend.vercel.app/projects")
-      .then((res) => res.json())
-      .then((data) => {
-        setProjects(data);
-      });
-  }, []);
-
-  if (projects.length === 0) {
-    return <div>Loading...</div>;
-  }
+  const projects = [
+    {
+      title: "School management",
+      description:
+        "A Mordern School Management website with a Amazing Dashboard",
+      img: "/school.png",
+      site_link: "https://pomkara-high-school.codeshinetechnology.com/",
+      github_link: "https://github.com/mdAbirDeveloper/pomkara-high-school",
+    },
+    {
+      title: "Bloging Website",
+      description:
+        "A Responsive Fasion Bloging Website with Next.js & Tailwind CSS",
+      img: "/blog.png",
+      site_link: "https://usama-mir.netlify.app/",
+      github_link: "https://github.com/mdAbirDeveloper/usama_mir_front_end",
+    },
+    {
+      title: "Doctor's portal",
+      description:
+        "Doctors Portal website with React.js and Tailwind CSS",
+      img: "/doctors.png",
+      site_link: "https://doctors-portal-7e5df.web.app/",
+      github_link: "https://github.com/mdAbirDeveloper/doctors-portal",
+    },
+    {
+      title: "Arabic website",
+      description:
+        "Responsive Arabic Website with Nex.js and Tailwind css",
+      img: "/arabic.png",
+      site_link: "https://csc-fron-end.vercel.app/",
+      github_link: "https://github.com/mdAbirDeveloper/csc-fron-end",
+    },
+    {
+      title: "Londry service",
+      description:
+        "Londry service website with Next.js and Tailwind CSS.",
+      img: "/londry.png",
+      site_link: "https://londry-service.netlify.app/",
+      github_link: "https://github.com/mdAbirDeveloper/londry-front-end",
+    },
+    {
+      title: "Parlour website",
+      description:
+        "Parlour website with React.js and Tailwind CSS",
+      img: "/parlour.png",
+      site_link: "https://jerin-s-parlour-e93df.web.app/",
+      github_link: "https://github.com/mdAbirDeveloper/perlour",
+    },
+  ];
+  
 
   return (
     <div
@@ -54,7 +94,7 @@ const Portfolio = () => {
           <li
             key={index}
             onClick={() => setCurrentProject(index)}
-            className={`cursor-pointer text-gray-300 bg-slate-700 rounded-lg p-2 max-w-[100px] hover:bg-slate-800 transition duration-300 ${
+            className={`cursor-pointer text-gray-300 bg-slate-700 rounded-lg p-2  hover:bg-slate-800 transition duration-300 ${
               currentProject === index ? "bg-slate-900" : ""
             }`}
           >

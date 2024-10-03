@@ -52,11 +52,10 @@ const Dashboard = () => {
   return (
     <div>
       <div
-        className="p-6 bg-gray-100 min-h-screen md:max-w-[1200px] w-full mx-auto my-4 rounded"
+        className="p-6 bg-gray-100 md:max-w-[1200px] w-full mx-auto my-4 rounded"
         id="Dashboard"
       >
         <h1 className="text-2xl font-bold mb-4 text-center">Dashboard</h1>
-
         <div className="bg-white shadow-md rounded-lg overflow-x-auto">
           <table className="min-w-full divide-y divide-gray-200">
             <thead className="bg-gray-800 text-white">
